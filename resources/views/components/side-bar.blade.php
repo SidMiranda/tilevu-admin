@@ -1,25 +1,18 @@
 <aside class="mdc-drawer mdc-drawer--dismissible mdc-drawer--open">
     <div class="mdc-drawer__header">
-      {{-- <a href="index.html" class="brand-logo">
-        <img src="../assets/images/logo.svg" alt="logo">
-      </a> --}}
       <h2 class="brand-logo text-white">Tilevu</h2>
     </div>
     <div class="mdc-drawer__content">
-      {{-- <div class="user-info">
-        <p class="name">Sidney Miranda</p>
-        <p class="email">sidney.miranda2013@gmail.com</p>
-      </div> --}}
       <div class="mdc-list-group">
         <nav class="mdc-list mdc-drawer-menu">
           <div class="mdc-list-item mdc-drawer-item">
-            <a class="mdc-drawer-link" href="index.html">
+            <a class="mdc-drawer-link" href="{{ route('dash') }}">
               <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">home</i>
               Dashboard
             </a>
           </div>
           <div class="mdc-list-item mdc-drawer-item">
-            <a class="mdc-drawer-link" href="pages/forms/basic-forms.html">
+            <a class="mdc-drawer-link" href="{{ route('pdv') }}">
               <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">track_changes</i>
               PDV
             </a>

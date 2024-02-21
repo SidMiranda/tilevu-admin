@@ -1,0 +1,81 @@
+header,
+footer {
+    display: none !important;
+}
+main {
+    padding: 10px;
+}
+.pdv-adjust {
+    height: 95vh;
+    background-color: white;
+}
+/****************************************************/
+.pdv-top {
+    background-color: #5F8995;
+    height: 70px;
+}
+.pdv-top-qtd {
+    background-color: #7096A1;
+    height: 100%;
+    font-size: 0.7rem;
+    width: 100px;
+    color:white;
+}
+.pdv-top-qtd button,
+input {
+    background-color: #7096A1;
+    color: white;
+    border: none;
+    margin:5px;
+}
+.pdv-top-qtd button{
+    border: solid 1px white;
+}
+.pdv-top-barcode input {
+    font-size: 1.5rem;
+    width: 90%;
+}
+.pdv-top-name span{
+    color:white;
+    font-size: 0.7rem;
+    margin-left: 10px;
+}
+.pdv-top-barcode {
+    /* background-color: red; */
+}
+.pdv-top-barcode span{
+    font-size: 1.5rem!important;
+}
+.pdv-top-button{}
+
+.pdv-top-qtd div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pdv-top-icon{
+    color:white;
+    font-size: 1.5rem;
+    margin-right: 10px;
+}
+/**********************************************/
+.mw-50 {
+    max-width: 50px !important;
+}
+.mw-100 {
+    max-width: 100px;
+}
+.mw-150 {
+    max-width: 150px;
+}
+/***********************************************/
+.pdv-bottom {
+    height: 100px;
+}
+.pdv-bottom-totais {
+    height: 50%
+}
+.btn-cancel {
+    background-color: #F43E41;
+    height: 100%;
+}

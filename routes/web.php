@@ -15,8 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('tilevu-dash');
-});
+    return view('panel/dash');
+})->name('dash');
+
+Route::get('/pdv', function () {
+    return view('panel/pdv');
+})->name('pdv');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
