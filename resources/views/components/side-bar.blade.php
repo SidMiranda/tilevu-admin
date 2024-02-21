@@ -1,14 +1,15 @@
 <aside class="mdc-drawer mdc-drawer--dismissible mdc-drawer--open">
     <div class="mdc-drawer__header">
-      <a href="index.html" class="brand-logo">
+      {{-- <a href="index.html" class="brand-logo">
         <img src="../assets/images/logo.svg" alt="logo">
-      </a>
+      </a> --}}
+      <h2 class="brand-logo text-white">Tilevu</h2>
     </div>
     <div class="mdc-drawer__content">
-      <div class="user-info">
+      {{-- <div class="user-info">
         <p class="name">Sidney Miranda</p>
         <p class="email">sidney.miranda2013@gmail.com</p>
-      </div>
+      </div> --}}
       <div class="mdc-list-group">
         <nav class="mdc-list mdc-drawer-menu">
           <div class="mdc-list-item mdc-drawer-item">
@@ -20,25 +21,25 @@
           <div class="mdc-list-item mdc-drawer-item">
             <a class="mdc-drawer-link" href="pages/forms/basic-forms.html">
               <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">track_changes</i>
-              Forms
+              PDV
             </a>
           </div>
           <div class="mdc-list-item mdc-drawer-item">
             <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="ui-sub-menu">
               <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">dashboard</i>
-              UI Features
+              Cadastro
               <i class="mdc-drawer-arrow material-icons">chevron_right</i>
             </a>
             <div class="mdc-expansion-panel" id="ui-sub-menu">
               <nav class="mdc-list mdc-drawer-submenu">
                 <div class="mdc-list-item mdc-drawer-item">
                   <a class="mdc-drawer-link" href="pages/ui-features/buttons.html">
-                    Buttons
+                    Categorias
                   </a>
                 </div>
                 <div class="mdc-list-item mdc-drawer-item">
                   <a class="mdc-drawer-link" href="pages/ui-features/typography.html">
-                    Typography
+                    Produtos
                   </a>
                 </div>
               </nav>
@@ -47,56 +48,36 @@
           <div class="mdc-list-item mdc-drawer-item">
             <a class="mdc-drawer-link" href="pages/tables/basic-tables.html">
               <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">grid_on</i>
-              Tables
+              Loja
             </a>
           </div>
           <div class="mdc-list-item mdc-drawer-item">
             <a class="mdc-drawer-link" href="pages/charts/chartjs.html">
               <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">pie_chart_outlined</i>
-              Charts
+              Estatisticas
             </a>
           </div>
           <div class="mdc-list-item mdc-drawer-item">
             <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="sample-page-submenu">
               <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">pages</i>
-              Sample Pages
+              Cupons
               <i class="mdc-drawer-arrow material-icons">chevron_right</i>
             </a>
             <div class="mdc-expansion-panel" id="sample-page-submenu">
               <nav class="mdc-list mdc-drawer-submenu">
                 <div class="mdc-list-item mdc-drawer-item">
                   <a class="mdc-drawer-link" href="pages/samples/blank-page.html">
-                    Blank Page
+                    Nova campanha
                   </a>
                 </div>
                 <div class="mdc-list-item mdc-drawer-item">
                   <a class="mdc-drawer-link" href="pages/samples/403.html">
-                    403
+                    Ver cupons
                   </a>
                 </div>
                 <div class="mdc-list-item mdc-drawer-item">
                   <a class="mdc-drawer-link" href="pages/samples/404.html">
-                    404
-                  </a>
-                </div>
-                <div class="mdc-list-item mdc-drawer-item">
-                  <a class="mdc-drawer-link" href="pages/samples/500.html">
-                    500
-                  </a>
-                </div>
-                <div class="mdc-list-item mdc-drawer-item">
-                  <a class="mdc-drawer-link" href="pages/samples/505.html">
-                    505
-                  </a>
-                </div>
-                <div class="mdc-list-item mdc-drawer-item">
-                  <a class="mdc-drawer-link" href="pages/samples/login.html">
-                    Login
-                  </a>
-                </div>
-                <div class="mdc-list-item mdc-drawer-item">
-                  <a class="mdc-drawer-link" href="pages/samples/register.html">
-                    Register
+                    Ver campanhas
                   </a>
                 </div>
               </nav>
@@ -105,15 +86,15 @@
           <div class="mdc-list-item mdc-drawer-item">
             <a class="mdc-drawer-link" href="https://www.bootstrapdash.com/demo/material-admin-free/jquery/documentation/documentation.html" target="_blank">
               <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">description</i>
-              Documentation
+              Tutoriais
             </a>
           </div>
         </nav>
       </div>
       <div class="profile-actions">
-        <a href="javascript:;">Settings</a>
+        <a href="javascript:;">Configurações</a>
         <span class="divider"></span>
-        <a href="javascript:;">Logout</a>
+        <a href="javascript:;">Sair</a>
       </div>
       <div class="mdc-card premium-card">
         <div class="d-flex align-items-center">
@@ -121,14 +102,14 @@
             <i class="mdi mdi-shield-outline"></i>
           </div>
           <div>
-            <p class="mt-0 mb-1 ml-2 font-weight-bold tx-12">Material Dash</p>
+            <p class="mt-0 mb-1 ml-2 font-weight-bold tx-12">Tilevu Pro</p>
             <p class="mt-0 mb-0 ml-2 tx-10">Pro available</p>
           </div>
         </div>
-        <p class="tx-8 mt-3 mb-1">More elements. More Pages.</p>
-        <p class="tx-8 mb-3">Starting from $25.</p>
+        <p class="tx-8 mt-3 mb-1">Mais recursos, suporte 24/7</p>
+        <p class="tx-8 mb-3">Pro Light R$49</p>
         <a href="https://www.bootstrapdash.com/product/material-design-admin-template/" target="_blank">
-                      <span class="mdc-button mdc-button--raised mdc-button--white">Upgrade to Pro</span>
+                      <span class="mdc-button mdc-button--raised mdc-button--white">Atualizar para Pro</span>
                   </a>
       </div>
     </div>
