@@ -39,14 +39,46 @@ footer {
     text-align: center;
 }
 
-.pdv-top-barcode{
+#auto-complete{
+    display: none;
+    background-color:white;
+    overflow-y:scroll;
+    position: absolute;
+    width:50%;
+    max-height: 200px;
+    margin-top:30px;
+    border: solid 1px #ccc;
+}
+
+#auto-complete ul{
+    list-style-type: none;
+    padding:0;
+    padding-left:5px;
+    margin:0;
+}
+
+#auto-complete ul li{
     padding:5px;
+    cursor:pointer;
+}
+
+#auto-complete ul li:hover{
+    background-color:#ccc;
+}
+
+.item-selected{
+    background-color:#ccc;
+}
+
+.pdv-top-barcode{
+    padding:10px 0 5px 0;
     align-items: center;
     margin:0;
 }
 
 .pdv-top-barcode span{
     margin-right: 5px;
+    font-size: 1.5rem!important;
 }
 
 .pdv-top-barcode input {
@@ -57,10 +89,6 @@ footer {
     color:white;
     font-size: 0.8rem;
     margin-left: 10px;
-}
-
-.pdv-top-barcode span{
-    font-size: 1.5rem!important;
 }
 
 .pdv-top-icon{
