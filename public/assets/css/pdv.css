@@ -110,9 +110,14 @@ footer {
     height: 150px;
 }
 .pdv-bottom-totais {
-    height: 33%;
+    height: 50%;
     margin: 0 20px 0 20px;
 }
+.pdv-bottom-buttons {
+    height:50%;
+    background-color:#B9B9B9;
+}
+
 #total-pay {
     font-size: 1.5rem;
     font-weight: bold;
@@ -122,7 +127,7 @@ footer {
 .btn-cancel {
     background-color: #F43E41;
     height: 100%;
-    width: 50px;
+    width: 75px;
     font-size: 1.5rem;
     color: white;
 }

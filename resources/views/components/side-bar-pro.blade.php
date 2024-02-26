@@ -1,19 +1,19 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
       <li class="nav-item user-info">
-        <p class="name">Clyde Miles</p>
-        <p class="email">clydemiles@elenor.us</p>
+        <p class="name">Sidney Miranda</p>
+        <p class="email">sidney.miranda2013@gmail.com</p>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{ route('dash') }}">
           <i class="mdi mdi-cube menu-icon"></i>
           <span class="menu-title">Dashboard</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="pages/samples/widgets.html">
+        <a class="nav-link" href="{{ route('pdv') }}">
           <i class="mdi mdi-widgets menu-icon"></i>
-          <span class="menu-title">Widgets</span>
+          <span class="menu-title">PDV</span>
         </a>
       </li>
       <li class="nav-item">

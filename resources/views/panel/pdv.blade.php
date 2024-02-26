@@ -1,10 +1,10 @@
-@extends('layouts.panel')
+@extends('layouts.pdv')
 
 @section('content')
 
     <link rel="stylesheet" href="../assets/css/pdv.css">
 
-    <div class="content-wrapper" style="padding:5px!important;">
+    <div class="content-wrapper red" style="padding:5px!important;">
         <div class="container-fluid">
         <div class="d-flex flex-column flex-grow-1 justify-content-between pdv-adjust">
 
@@ -96,14 +96,12 @@
                     <div>Desconto R$ 2,00</div>
                     <div id="total-pay">Total R$ 35,50</div>
                 </div>
-                <div class="d-flex justify-content-between flex-row align-items-center"
-                style="height:33%; background-color:#B9B9B9">
+                <div class="d-flex justify-content-between flex-row align-items-center pdv-bottom-buttons">
                     <div class="btn-cancel d-flex justify-content-center align-items-center">
                         <span class="mdi mdi-block-helper"></span>
                     </div>
                     <div id="payment-button">RECEBER  <span class="mdi mdi-arrow-right"></span></div>
                 </div>
-                <div style="height:33%;"></div>
             </div>
 
         </div>

@@ -11,13 +11,6 @@
     <link rel="stylesheet" href="../assets/vendors/css/vendor.bundle.base.css">
     <!-- endinject -->
 
-    <!-- Plugin css for this page -->
-    {{-- <link rel="stylesheet" href="../assets/vendors/font-awesome/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="../assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css">
-    <link rel="stylesheet" href="../assets/vendors/jquery-bar-rating/css-stars.css">
-    <link rel="stylesheet" href="../assets/vendors/jvectormap/jquery-jvectormap.css"> --}}
-    <!-- End plugin css for this page -->
-
     <!-- Layout styles -->
     <link rel="stylesheet" href="../assets/css/demo_1/style.css">
     <!-- End layout styles -->
@@ -27,17 +20,8 @@
 
 </head>
 <body class="sidebar-fixed" style="overflow:hidden">
-    <style>
-        .red {background-color: red!important;}
-        .green { background-color: green!important;}
-        .yellow {background-color: yellow!important;}
-        .blue {background-color: blue!important;}
-    </style>
 
     <div class="container-scroller">
-
-        <x-top-bar-pro>
-        </x-top-bar-pro>
 
         <div class="container-fluid page-body-wrapper">
 
@@ -48,9 +32,6 @@
 
                 @yield('content')
 
-                <x-footer-pro>
-                </x-footer-pro>
-
             </div>
 
         </div>
@@ -60,21 +41,6 @@
   <script src="../assets/vendors/js/vendor.bundle.base.js"></script>
   <script src="../assets/vendors/bootstrap-material-design/js/bootstrap-material-design.min.js"></script>
   <!-- endinject -->
-
-  <!-- Plugin js for this page -->
-  {{-- <script src="../assets/vendors/chart.js/Chart.min.js"></script>
-  <script src="../assets/vendors/jquery-circle-progress/js/circle-progress.min.js"></script>
-  <script src="../assets/vendors/jquery-bar-rating/jquery.barrating.min.js"></script>
-  <script src="../assets/vendors/jvectormap/jquery-jvectormap.min.js"></script>
-  <script src="../assets/vendors/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-  <script src="../assets/vendors/flot/jquery.flot.js"></script>
-  <script src="../assets/vendors/flot/jquery.flot.resize.js"></script>
-  <script src="../assets/vendors/flot/jquery.flot.categories.js"></script>
-  <script src="../assets/vendors/flot/jquery.flot.fillbetween.js"></script>
-  <script src="../assets/vendors/flot/jquery.flot.stack.js"></script>
-  <script src="../assets/vendors/flot/jquery.flot.pie.js"></script>
-  <script src="../assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script> --}}
-  <!-- End plugin js for this page -->
 
   <!-- inject:js -->
   <script src="../assets/js/off-canvas.js"></script>
@@ -88,5 +54,17 @@
   <script src="../assets/js/dashboard.js"></script>
   <!-- End custom js for this page -->
 
+  <script>
+   $(function() {
+        var body = $('body');
+        body.toggleClass('sidebar-icon-only');
+    });
+
+    $(document).on('mouseenter mouseleave', '.sidebar', function(ev) {
+        var body = $('body');
+        body.toggleClass('sidebar-icon-only');
+    });
+
+</script>
 </body>
 </html>
