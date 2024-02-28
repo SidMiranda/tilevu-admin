@@ -3,9 +3,11 @@
     const  searchItem = document.getElementById('search-item');
     const  autoComplete = document.getElementById('auto-complete');
     const  autoCompleteList = document.getElementById('auto-complete-list');
+    const  items = document.querySelectorAll('#auto-complete-list li');
     const  btnAdd = document.getElementById('btn-add');
     const  btnRemove = document.getElementById('btn-remove');
     const  inputQtd = document.getElementById('input-qtd');
+    const  btnAddItem = document.getElementById('btn-add-item');
 
     let selectedItemIndex = -1;
 
@@ -34,7 +36,6 @@
     }
 
     function updateSelectedItem() {
-        const items = document.querySelectorAll('#auto-complete-list li');
         items.forEach((item, index) => {
             if (index === selectedItemIndex) {
                 item.classList.add('item-selected');
@@ -45,7 +46,6 @@
     }
 
     function handleEnter() {
-        const items = document.querySelectorAll('#auto-complete-list li');
         if (items.length > 0) {
             searchItem.value = items[selectedItemIndex].innerText;
             autoComplete.style.display = 'none';
@@ -56,16 +56,23 @@
     }
 
     searchItem.addEventListener('keydown', function (e) {
-        const items = document.querySelectorAll('#auto-complete-list li');
         if (autoComplete.style.display === 'block') {
             if (e.key === 'ArrowDown') {
                 var itemsCount = autoCompleteList.children.length;
                 if (selectedItemIndex < itemsCount - 1) {
                     selectedItemIndex++;
+
+                    if (items[selectedItemIndex].offsetTop + items[selectedItemIndex].offsetHeight > autoCompleteList.scrollTop + autoCompleteList.offsetHeight) {
+                        autoCompleteList.scrollTop = items[selectedItemIndex].offsetTop + items[selectedItemIndex].offsetHeight - autoCompleteList.offsetHeight;
+                    }
                 }
             }else if (e.key === 'ArrowUp') {
                 if (selectedItemIndex > 0) {
                     selectedItemIndex--;
+
+                    if (items[selectedItemIndex].offsetTop < autoCompleteList.scrollTop) {
+                        autoCompleteList.scrollTop = items[selectedItemIndex].offsetTop;
+                    }
                 }
             }else if (e.key === 'Enter') {
                 handleEnter();
@@ -105,7 +112,6 @@
     })
 
     autoComplete.addEventListener('click', function (e) {
-        const items = document.querySelectorAll('#auto-complete-list li');
         items.forEach((item, index) => {
             if (item === e.target) {
                 selectedItemIndex = index;
@@ -125,5 +131,11 @@
     btnRemove.addEventListener('click', function () {
         if (inputQtd.value > 1) {
             inputQtd.value = parseInt(inputQtd.value) - 1;
+        }
+    })
+
+    btnAddItem.addEventListener('click', function () {
+        if(items[selectedItemIndex].dataset.value !== undefined){
+            saveItemLocalStorage(items[selectedItemIndex].dataset.value);
         }
     })

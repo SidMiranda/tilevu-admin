@@ -24,12 +24,21 @@
                             <li data-value="pr5">Cigarro Marlbora de melancia</li>
                             <li data-value="pr6">Gelo de sabor limão</li>
                             <li data-value="pr7">Bohemia Lata 365ml</li>
+                            <li data-value="pr1">Copão de Wisky com Energético Redbull 500ml</li>
+                            <li data-value="pr2">Coca Cola 2L</li>
+                            <li data-value="pr3">Cerveja Bavaria 360ml</li>
+                            <li data-value="pr4">Combo de corote com fanta laranja</li>
+                            <li data-value="pr5">Cigarro Marlbora de melancia</li>
+                            <li data-value="pr6">Gelo de sabor limão</li>
+                            <li data-value="pr7">Bohemia Lata 365ml</li>
 
                         </ul>
                     </div>
                 </div>
         </div>
     </div>
-    <span class="mdi mdi-cart-arrow-down pdv-top-icon"></span>
+    <div id="btn-add-item">
+        <span class="mdi mdi-cart-arrow-down pdv-top-icon"></span>
+    </div>
 </div>
 

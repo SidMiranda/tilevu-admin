@@ -42,7 +42,7 @@ footer {
 #auto-complete{
     display: none;
     background-color:white;
-    overflow-y:scroll;
+    /* overflow-y:scroll; */
     position: absolute;
     width:50%;
     max-height: 200px;
@@ -53,6 +53,8 @@ footer {
 #auto-complete ul{
     list-style-type: none;
     padding:0;
+    overflow-y: scroll;
+    max-height: 200px;
     padding-left:5px;
     margin:0;
 }
@@ -95,6 +97,10 @@ footer {
     color:white;
     font-size: 1.5rem;
     margin-right: 10px;
+}
+
+#btn-add-item{
+    cursor:pointer
 }
 /**********************************************/
 .mw-50 {
