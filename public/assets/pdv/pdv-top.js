@@ -14,6 +14,8 @@
     function saveItemLocalStorage(itemId) {
         let item = searchItem.value;
         let qtd = inputQtd.value;
+        let aleatoryPrice = Math.floor(Math.random() * 1000);
+        let aleatorydiscount = Math.floor(Math.random() * aleatoryPrice);
         let items = JSON.parse(localStorage.getItem('items')) || [];
 
         let itemExists = false;
@@ -26,12 +28,15 @@
         });
 
         if (!itemExists) {
-            items.push({ itemId, item, qtd });
+            items.push({ itemId, item, qtd, aleatoryPrice, aleatorydiscount });
         }
 
         localStorage.setItem('items', JSON.stringify(items));
         searchItem.value = '';
         inputQtd.value = 1;
+
+        selectedItemIndex = -1;
+        updateTable();
 
     }
 
@@ -141,7 +146,7 @@
     })
 
     btnAddItem.addEventListener('click', function () {
-        if(items[selectedItemIndex].dataset.value !== undefined){
+    if(items[selectedItemIndex].dataset.value !== undefined){
             saveItemLocalStorage(items[selectedItemIndex].dataset.value);
         }
     })

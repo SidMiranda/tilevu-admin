@@ -40,8 +40,21 @@
 
     </div>
 
+    <!-- Plugin js for popup -->
+    <script src="../../assets/vendors/sweetalert/sweetalert.min.js"></script>
+    <script src="../../assets/vendors/jquery.avgrund/jquery.avgrund.min.js"></script>
+    <!-- End plugin js for this page -->
+
+    <!-- Custom js for popup -->
+    <script src="../../assets/js/alerts.js"></script>
+    <script src="../../assets/js/avgrund.js"></script>
+    <!-- End custom js for this page -->
+
+  <script src="../assets/js/convert-currency.js"></script>
   <script src="../assets/pdv/pdv-top.js"></script>
   <script src="../assets/pdv/pdv-items.js"></script>
+  <script src="../assets/pdv/pdv-bottom.js"></script>
+
 
   <!-- plugins:js -->
   <script src="../assets/vendors/js/vendor.bundle.base.js"></script>

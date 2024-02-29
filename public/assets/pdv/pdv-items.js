@@ -1,7 +1,3 @@
-$(document).ready(function(){
-    setInterval(updateTable, 500);
-});
-
 function addItem(itemId){
     let items = JSON.parse(localStorage.getItem('items')) || [];
     items.forEach((storedItem, index) => {
@@ -40,11 +36,13 @@ function deleteItem(itemId){
 }
 
 function updateTable(){
+
     table = document.querySelector('.table-custom tbody');
     let itemsTable = JSON.parse(localStorage.getItem('items')) || [];
     table.innerHTML = '';
     itemsTable.forEach(item => {
         let tr = document.createElement('tr');
+        let totalPrice = item.qtd * item.aleatoryPrice - item.aleatorydiscount;
         tr.innerHTML = `
             <td class="mw-50">
                 <span class="bmd-form-group pdv-table-qtd">
@@ -54,13 +52,14 @@ function updateTable(){
                 </span>
             </td>
             <td class="text-left">${item.item}</td>
-            <td class="text-left">R$ 0,00</td>
-            <td class="text-left">R$ 0,00</td>
-            <td class="text-left">R$ 0,00</td>
+            <td class="text-left">${convertToBRL(item.aleatoryPrice)}</td>
+            <td class="text-left">${convertToBRL(item.aleatorydiscount)}</td>
+            <td class="text-left">${convertToBRL(totalPrice)}</td>
             <td class="text-left">
                 <span class="mdi mdi-delete pdv-table-icon-delete" onclick="deleteItem('${item.itemId}')"></span>
             </td>
         `;
         table.appendChild(tr);
     });
+    updateTotal();
 }

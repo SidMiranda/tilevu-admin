@@ -6,7 +6,7 @@
     'width': '100%',
     'height': '75%',
     'interactive': true,
-    'defaultText': 'Add More',
+    'defaultText': 'Add',
     'removeWithBackspace': true,
     'minChars': 0,
     'maxChars': 20, // if not provided there is no limit

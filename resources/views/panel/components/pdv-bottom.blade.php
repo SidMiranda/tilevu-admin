@@ -1,13 +1,18 @@
 <div class="pdv-bottom">
     <div class="d-flex justify-content-between flex-row  align-items-center pdv-bottom-totais">
-        <div>3 Itens</div>
-        <div>Desconto R$ 2,00</div>
-        <div id="total-pay">Total R$ 35,50</div>
+        <div class="pdv-items-count"></div>
+        <div class="pdv-items-discount"></div>
+        <div class="pdv-total-price" id="total-pay"></div>
     </div>
     <div class="d-flex justify-content-between flex-row align-items-center pdv-bottom-buttons">
-        <div class="btn-cancel d-flex justify-content-center align-items-center">
-            <span class="mdi mdi-block-helper"></span>
+        <div class="btn-cancel d-flex flex-column justify-content-center align-items-center" onclick="cancelOrder()">
+            <span>Cancelar</span>
+            <span>[F4]</span>
+            {{-- <span class="mdi mdi-block-helper"></span> --}}
         </div>
-        <div id="payment-button">RECEBER  <span class="mdi mdi-arrow-right"></span></div>
+        <a href="#" id="showPayments">
+            <div id="payment-button">[F2] RECEBER  <span class="mdi mdi-arrow-right"></span></div>
+        </a>
+
     </div>
 </div>

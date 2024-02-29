@@ -11,6 +11,10 @@ Route::get('/pdv', function () {
     return view('panel/pdv');
 })->middleware('auth', 'verified')->name('pdv');
 
+Route::get('/products', function () {
+    return view('panel/products');
+})->middleware('auth', 'verified')->name('products');
+
 Route::get('/welcome', function () {
     return view('welcome');
 })->name('welcome');

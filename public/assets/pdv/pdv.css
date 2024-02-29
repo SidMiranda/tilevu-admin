@@ -1,9 +1,7 @@
-footer {
-    /* display: none!important; */
-}
 .pdv-adjust {
     height: 95vh;
     background-color: white;
+    user-select: none;
 }
 /****************************************************/
 .pdv-top {
@@ -42,7 +40,6 @@ footer {
 #auto-complete{
     display: none;
     background-color:white;
-    /* overflow-y:scroll; */
     position: absolute;
     width:50%;
     max-height: 200px;
@@ -93,15 +90,22 @@ footer {
     margin-left: 10px;
 }
 
-.pdv-top-icon{
-    color:white;
-    font-size: 1.5rem;
-    margin-right: 10px;
+#btn-add-item{
+    background-color: #20B2AA;
+    height: 100%;
+    width: 75px;
+    color: white;
+    cursor: pointer;
+}
+#btn-add-item:hover{
+    box-shadow: 0 0 5px black;
 }
 
-#btn-add-item{
-    cursor:pointer
+.pdv-top-icon{
+    font-size: 2rem;
+    color: white;
 }
+
 /**********************************************/
 .mw-50 {
     max-width: 50px!important;
@@ -113,6 +117,9 @@ footer {
     max-width: 150px;
 }
 /**********************************************/
+.table-custom{
+    user-select: none;
+}
 .pdv-table-qtd{
     padding:0;
     display:flex;
@@ -152,6 +159,10 @@ footer {
     height:50%;
     background-color:#B9B9B9;
 }
+.pdv-bottom-buttons a{
+    text-decoration:none;
+    border: none;
+}
 
 #total-pay {
     font-size: 1.5rem;
@@ -162,13 +173,17 @@ footer {
 .btn-cancel {
     background-color: #F43E41;
     height: 100%;
-    width: 75px;
-    font-size: 1.5rem;
+    width: 100px;
+    font-size: 1rem;
     color: white;
+    cursor: pointer;
+}
+.btn-cancel:hover {
+    box-shadow: 0 0 5px black;
 }
 
 #payment-button{
-    color:white;
+    color:black;
     display:flex;
     align-items: center;
     justify-content: center;

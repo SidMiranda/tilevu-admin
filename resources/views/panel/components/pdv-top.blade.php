@@ -37,7 +37,7 @@
                 </div>
         </div>
     </div>
-    <div id="btn-add-item">
+    <div id="btn-add-item" class="d-flex justify-content-center align-items-center">
         <span class="mdi mdi-cart-arrow-down pdv-top-icon"></span>
     </div>
 </div>
