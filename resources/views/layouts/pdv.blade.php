@@ -16,7 +16,9 @@
     <!-- End layout styles -->
     <link rel="shortcut icon" href="../assets/images/favicon.ico" />
 
-    {{-- <script src="../assets/js/jquery-3.7.1.min.js"></script> --}}
+    <script src="../assets/js/jquery-3.7.1.min.js"></script>
+
+    <link rel="stylesheet" href="../assets/pdv/pdv.css">
 
 </head>
 <body class="sidebar-fixed" style="overflow:hidden">
@@ -37,6 +39,10 @@
         </div>
 
     </div>
+
+  <script src="../assets/pdv/pdv-top.js"></script>
+  <script src="../assets/pdv/pdv-items.js"></script>
+
   <!-- plugins:js -->
   <script src="../assets/vendors/js/vendor.bundle.base.js"></script>
   <script src="../assets/vendors/bootstrap-material-design/js/bootstrap-material-design.min.js"></script>

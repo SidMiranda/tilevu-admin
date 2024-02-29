@@ -138,6 +138,7 @@ footer {
 .pdv-table-icon-delete{
     font-size: 1.5rem;
     margin-right: 10px;
+    cursor:pointer;
 }
 /***********************************************/
 .pdv-bottom {

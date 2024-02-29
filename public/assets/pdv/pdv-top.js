@@ -85,6 +85,12 @@
                 saveItemLocalStorage(items[selectedItemIndex].dataset.value);
             }
             autoComplete.style.display = 'none';
+        }else if (e.key === '+') {
+            e.preventDefault();
+            btnAdd.click();
+        }else if (e.key === '-') {
+            e.preventDefault();
+            btnRemove.click();
         }
 
         updateSelectedItem();
