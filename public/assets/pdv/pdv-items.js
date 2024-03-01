@@ -1,7 +1,7 @@
 function addItem(itemId){
     let items = JSON.parse(localStorage.getItem('items')) || [];
     items.forEach((storedItem, index) => {
-        if (storedItem.itemId === itemId) {
+        if (storedItem.itemId == itemId) {
             items[index].qtd = parseInt(items[index].qtd) + 1;
         }
     });
@@ -12,7 +12,7 @@ function addItem(itemId){
 function removeItem(itemId){
     let items = JSON.parse(localStorage.getItem('items')) || [];
     items.forEach((storedItem, index) => {
-        if (storedItem.itemId === itemId) {
+        if (storedItem.itemId == itemId) {
             if (parseInt(items[index].qtd) > 1) {
                 items[index].qtd = parseInt(items[index].qtd) - 1;
             } else {
@@ -27,7 +27,7 @@ function removeItem(itemId){
 function deleteItem(itemId){
     let items = JSON.parse(localStorage.getItem('items')) || [];
     items.forEach((storedItem, index) => {
-        if (storedItem.itemId === itemId) {
+        if (storedItem.itemId == itemId) {
             items.splice(index, 1);
         }
     });
@@ -42,7 +42,7 @@ function updateTable(){
     table.innerHTML = '';
     itemsTable.forEach(item => {
         let tr = document.createElement('tr');
-        let totalPrice = item.qtd * item.aleatoryPrice - item.aleatorydiscount;
+        let totalPrice = item.qtd * item.sellPrice - item.aleatorydiscount;
         tr.innerHTML = `
             <td class="mw-50">
                 <span class="bmd-form-group pdv-table-qtd">
@@ -51,8 +51,8 @@ function updateTable(){
                     <button onclick="addItem('${item.itemId}')">+</button>
                 </span>
             </td>
-            <td class="text-left">${item.item}</td>
-            <td class="text-left">${convertToBRL(item.aleatoryPrice)}</td>
+            <td class="text-left">${item.itemName}</td>
+            <td class="text-left">${convertToBRL(item.sellPrice)}</td>
             <td class="text-left">${convertToBRL(item.aleatorydiscount)}</td>
             <td class="text-left">${convertToBRL(totalPrice)}</td>
             <td class="text-left">

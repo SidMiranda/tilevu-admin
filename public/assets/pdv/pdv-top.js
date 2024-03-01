@@ -3,7 +3,7 @@
     const  searchItem = document.getElementById('search-item');
     const  autoComplete = document.getElementById('auto-complete');
     const  autoCompleteList = document.getElementById('auto-complete-list');
-    const  items = document.querySelectorAll('#auto-complete-list li');
+    var  items = document.querySelectorAll('#auto-complete-list li');
     const  btnAdd = document.getElementById('btn-add');
     const  btnRemove = document.getElementById('btn-remove');
     const  inputQtd = document.getElementById('input-qtd');
@@ -11,11 +11,13 @@
 
     let selectedItemIndex = -1;
 
-    function saveItemLocalStorage(itemId) {
-        let item = searchItem.value;
+    function saveItemLocalStorage(item) {
+        let productData = JSON.parse(item);
+        let itemId = productData.id;
+        let itemName = productData.name;
         let qtd = inputQtd.value;
-        let aleatoryPrice = Math.floor(Math.random() * 1000);
-        let aleatorydiscount = Math.floor(Math.random() * aleatoryPrice);
+        let sellPrice = productData.sell_price;
+        let aleatorydiscount = Math.floor(Math.random() * sellPrice);
         let items = JSON.parse(localStorage.getItem('items')) || [];
 
         let itemExists = false;
@@ -28,7 +30,7 @@
         });
 
         if (!itemExists) {
-            items.push({ itemId, item, qtd, aleatoryPrice, aleatorydiscount });
+            items.push({ itemId, itemName, qtd, sellPrice, aleatorydiscount });
         }
 
         localStorage.setItem('items', JSON.stringify(items));
@@ -58,6 +60,21 @@
             searchItem.focus();
 
         }
+    }
+
+    function loadProducts() {
+        fetch('http://127.0.0.1:8000/api/product/list')
+            .then(response => response.json())
+            .then(data => {
+                autoCompleteList.innerHTML = '';
+                data.forEach(product => {
+                    let li = document.createElement('li');
+                    li.innerText = product.name;
+                    li.dataset.value = JSON.stringify(product);
+                    autoCompleteList.appendChild(li);
+                });
+                items = document.querySelectorAll('#auto-complete-list li');
+            });
     }
 
     searchItem.addEventListener('keydown', function (e) {
@@ -103,6 +120,7 @@
 
     searchItem.addEventListener('input', event => {
         if (event.target.value.length > 3) {
+            loadProducts();
             autoComplete.style.display = 'block';
         } else {
             autoComplete.style.display = 'none';

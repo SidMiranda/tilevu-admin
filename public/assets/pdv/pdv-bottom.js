@@ -55,7 +55,7 @@ function upadateTotalPrice(){
     let discount = 0;
     items.forEach(item => {
         discount += item.aleatorydiscount;
-        totalPrice += item.qtd * item.aleatoryPrice - item.aleatorydiscount;
+        totalPrice += item.qtd * item.sellPrice - item.aleatorydiscount;
     });
     document.querySelector('.pdv-total-price').innerHTML = "Total " + convertToBRL(totalPrice);
 }

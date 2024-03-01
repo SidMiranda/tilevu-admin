@@ -17,21 +17,7 @@
                     <input type="text" id="search-item"></input>
                     <div id="auto-complete">
                         <ul id="auto-complete-list">
-                            <li data-value="pr1">Copão de Wisky com Energético Redbull 500ml</li>
-                            <li data-value="pr2">Coca Cola 2L</li>
-                            <li data-value="pr3">Cerveja Bavaria 360ml</li>
-                            <li data-value="pr4">Combo de corote com fanta laranja</li>
-                            <li data-value="pr5">Cigarro Marlbora de melancia</li>
-                            <li data-value="pr6">Gelo de sabor limão</li>
-                            <li data-value="pr7">Bohemia Lata 365ml</li>
-                            <li data-value="pr1">Copão de Wisky com Energético Redbull 500ml</li>
-                            <li data-value="pr2">Coca Cola 2L</li>
-                            <li data-value="pr3">Cerveja Bavaria 360ml</li>
-                            <li data-value="pr4">Combo de corote com fanta laranja</li>
-                            <li data-value="pr5">Cigarro Marlbora de melancia</li>
-                            <li data-value="pr6">Gelo de sabor limão</li>
-                            <li data-value="pr7">Bohemia Lata 365ml</li>
-
+                            {{-- <li> products table --}}
                         </ul>
                     </div>
                 </div>
