@@ -11,9 +11,7 @@
     <link rel="stylesheet" href="../assets/vendors/css/vendor.bundle.base.css">
     <!-- endinject -->
 
-    <!-- Layout styles -->
     <link rel="stylesheet" href="../assets/css/demo_1/style.css">
-    <!-- End layout styles -->
     <link rel="shortcut icon" href="../assets/images/favicon.ico" />
 
     <script src="../assets/js/jquery-3.7.1.min.js"></script>
@@ -30,7 +28,7 @@
             <x-side-bar-pro>
             </x-side-bar-pro>
 
-            <div class="main-panel blue">
+            <div class="main-panel">
 
                 @yield('content')
 
@@ -55,7 +53,6 @@
   <script src="../assets/pdv/pdv-items.js"></script>
   <script src="../assets/pdv/pdv-bottom.js"></script>
 
-
   <!-- plugins:js -->
   <script src="../assets/vendors/js/vendor.bundle.base.js"></script>
   <script src="../assets/vendors/bootstrap-material-design/js/bootstrap-material-design.min.js"></script>
@@ -68,10 +65,6 @@
   <script src="../assets/js/settings.js"></script>
   <script src="../assets/js/todolist.js"></script>
   <!-- endinject -->
-
-  <!-- Custom js for this page -->
-  <script src="../assets/js/dashboard.js"></script>
-  <!-- End custom js for this page -->
 
   <script>
    $(function() {

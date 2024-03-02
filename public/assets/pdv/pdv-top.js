@@ -9,6 +9,9 @@
     const  inputQtd = document.getElementById('input-qtd');
     const  btnAddItem = document.getElementById('btn-add-item');
 
+    const  pdvTopAccount = document.querySelector('.pdv-top-account');
+    var  changeAccount = document.getElementById('change-account');
+
     let selectedItemIndex = -1;
 
     function saveItemLocalStorage(item) {
@@ -168,3 +171,16 @@
             saveItemLocalStorage(items[selectedItemIndex].dataset.value);
         }
     })
+
+    pdvTopAccount.addEventListener('click', function () {
+        console.log('click');
+        if (changeAccount.style.display === 'block') {
+            changeAccount.style.display = 'none';
+        }else {
+            changeAccount.style.display = 'block';
+        }
+    })
+
+
+
+

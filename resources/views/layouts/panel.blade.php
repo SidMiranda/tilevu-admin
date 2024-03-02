@@ -45,8 +45,6 @@
     <link rel="stylesheet" href="{{ asset('assets/css/imgDropZone.css ')}}"/>
     <script src="{{ asset('assets/js/convert-currency.js') }} "></script>
 
-
-
 </head>
 <body class="sidebar-fixed" style="overflow:hidden">
     <style>
@@ -66,7 +64,7 @@
             <x-side-bar-pro>
             </x-side-bar-pro>
 
-            <div class="main-panel blue">
+            <div class="main-panel">
 
                 @yield('content')
 
@@ -101,13 +99,7 @@
   <script src="{{ asset('assets/vendors/jquery.repeater/jquery.repeater.min.js') }} "></script>
   <script src="{{ asset('assets/vendors/inputmask/jquery.inputmask.bundle.js') }} "></script>
 
-
   <!-- inject:js -->
-  <script src="{{ asset('assets/js/off-canvas.js') }} "></script>
-  <script src="{{ asset('assets/js/hoverable-collapse.js') }} "></script>
-  <script src="{{ asset('assets/js/misc.js') }} "></script>
-  <script src="{{ asset('assets/js/settings.js') }} "></script>
-  <script src="{{ asset('assets/js/todolist.js') }} "></script>
   <script src="{{ asset('assets/js/form-repeater.js') }} "></script>
   <script src="{{ asset('assets/js/inputmask.js') }} "></script>
   <!-- endinject -->

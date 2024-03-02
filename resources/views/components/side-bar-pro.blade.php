@@ -25,7 +25,7 @@
         <div class="collapse" id="ui-basic">
           <ul class="nav flex-column sub-menu">
             <li class="nav-item"> <a class="nav-link" href="{{ route('products') }}">Novo Produto</a></li>
-            <li class="nav-item"> <a class="nav-link" href="#">Todos Produtos</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ route('product-list') }}">Todos Produtos</a></li>
           </ul>
         </div>
       </li>
@@ -49,13 +49,13 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="pages/ui-features/popups.html">
+        <a class="nav-link" href="#>
           <i class="mdi mdi-forum menu-icon"></i>
           <span class="menu-title">Popups</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="pages/ui-features/notifications.html">
+        <a class="nav-link" href="#">
           <i class="mdi mdi-bell-ring menu-icon"></i>
           <span class="menu-title">Notifications</span>
         </a>
@@ -92,13 +92,13 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="pages/forms/text_editor.html">
+        <a class="nav-link" href="">
           <i class="mdi mdi-file-document menu-icon"></i>
           <span class="menu-title">Text editors</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="pages/forms/code_editor.html">
+        <a class="nav-link" href="#">
           <i class="mdi mdi-code-not-equal-variant menu-icon"></i>
           <span class="menu-title">Code editors</span>
         </a>
@@ -130,10 +130,10 @@
         </a>
         <div class="collapse" id="tables">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.html">Basic table</a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/tables/data-table.html">Data table</a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/tables/js-grid.html">Js-grid</a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/tables/sortable-table.html">Sortable table</a></li>
+            <li class="nav-item"> <a class="nav-link" href="#">Basic table</a></li>
+            <li class="nav-item"> <a class="nav-link" href="#">Data table</a></li>
+            <li class="nav-item"> <a class="nav-link" href="#l">Js-grid</a></li>
+            <li class="nav-item"> <a class="nav-link" href="#">Sortable table</a></li>
           </ul>
         </div>
       </li>
@@ -145,9 +145,9 @@
         </a>
         <div class="collapse" id="maps">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="pages/maps/google-maps.html">Google Maps</a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/maps/mapael.html">Mapael</a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/maps/vector-map.html">Vector map</a></li>
+            <li class="nav-item"> <a class="nav-link" href="#">Google Maps</a></li>
+            <li class="nav-item"> <a class="nav-link" href="#">Mapael</a></li>
+            <li class="nav-item"> <a class="nav-link" href="#">Vector map</a></li>
           </ul>
         </div>
       </li>
@@ -159,12 +159,12 @@
         </a>
         <div class="collapse" id="auth">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/samples/login-2.html"> Login 2 </a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/samples/mutli-level-login.html"> Multi step login </a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/samples/register-2.html"> Register 2 </a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/samples/lock-screen.html"> Lockscreen </a></li>
+            <li class="nav-item"> <a class="nav-link" href="#"> Login </a></li>
+            <li class="nav-item"> <a class="nav-link" href="#"> Login 2 </a></li>
+            <li class="nav-item"> <a class="nav-link" href="#"> Multi step login </a></li>
+            <li class="nav-item"> <a class="nav-link" href="#"> Register </a></li>
+            <li class="nav-item"> <a class="nav-link" href="#"> Register 2 </a></li>
+            <li class="nav-item"> <a class="nav-link" href="#"> Lockscreen </a></li>
           </ul>
         </div>
       </li>
@@ -176,8 +176,8 @@
         </a>
         <div class="collapse" id="error">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> 404 </a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> 500 </a></li>
+            <li class="nav-item"> <a class="nav-link" href="#"> 404 </a></li>
+            <li class="nav-item"> <a class="nav-link" href="#"> 500 </a></li>
           </ul>
         </div>
       </li>

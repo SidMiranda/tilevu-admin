@@ -15,6 +15,10 @@ Route::get('/products', function () {
     return view('panel/products');
 })->middleware('auth', 'verified')->name('products');
 
+Route::get('/products/list', function () {
+    return view('panel/product-list');
+})->middleware('auth', 'verified')->name('product-list');
+
 Route::get('/welcome', function () {
     return view('welcome');
 })->name('welcome');

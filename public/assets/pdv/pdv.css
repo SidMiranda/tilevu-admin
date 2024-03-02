@@ -106,6 +106,54 @@
     color: white;
 }
 
+.pdv-top-account{
+    font-size: 2rem;
+    color:white;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+#btn-accounts{
+    height: 100%;
+    background-color: blue;
+    cursor:pointer;
+    position: relative;
+}
+#btn-accounts:hover{
+    box-shadow: 0 0 5px black;
+}
+
+#change-account{
+    display:none;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 0 5px black;
+    width: 200px;
+    top: 75px;
+    left: -180px;
+    padding: 5px;
+    max-height: 450px;
+    overflow-y: scroll;
+}
+
+#change-account-list{
+    list-style-type: none;
+    padding:0;
+    margin:0;
+    text-align: center;
+}
+
+.to-do-list-item{
+    padding:15px;
+    border-bottom: solid 1px #ccc;
+}
+
+.to-do-list-item:hover{
+    background-color: #ccc;
+    cursor: pointer;
+}
+
 /**********************************************/
 .mw-50 {
     max-width: 50px!important;
