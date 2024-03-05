@@ -31,47 +31,19 @@
             <span class="mdi mdi-arrow-down"></span>
         </div>
         <div id="change-account">
+            <input type="text" id="input-new-account" maxlength="15"/>
             <button id="btn-new-account" class="btn btn-outline-info btn-block mb-2">Nova Conta</button>
-            <div class="to-do-list-content" id="change-account-list">
+            <div id="change-account-list">
+
+                {{-- <div class="to-do-list-item">
+                    <label class="mb-0" for="editable" id="editable-label" onclick="makeEditable()">Caixa Livre</label>
+                    <input class="mb-0" type="text" id="editable" style="display:none; max-width:150px;" onblur="makeNonEditable()">
+                    <p class="mb-0 tx-12 text-muted">R$ 22,70</p>
+                </div> --}}
 
                 <div class="to-do-list-item">
                     <h5 class="mb-0 font-weight-normal">Caixa Livre</h5>
-                    <p class="mb-0 tx-12 text-muted">R$ 15,30</p>
-                </div>
-
-                <div class="to-do-list-item">
-                    <h5 class="mb-0 font-weight-normal">Carlos Silva</h5>
                     <p class="mb-0 tx-12 text-muted">R$ 22,70</p>
-                </div>
-
-                <div class="to-do-list-item">
-                    <h5 class="mb-0 font-weight-normal">Quarto 125</h5>
-                    <p class="mb-0 tx-12 text-muted">R$ 185,00</p>
-                </div>
-
-                <div class="to-do-list-item">
-                      <h5 class="mb-0 font-weight-normal">Conta Mesa 12</h5>
-                      <p class="mb-0 tx-12 text-muted">R$ 84,30</p>
-                  </div>
-
-                <div class="to-do-list-item">
-                    <h5 class="mb-0 font-weight-normal">Silvana Morais</h5>
-                    <p class="mb-0 tx-12 text-muted">R$ 25,12</p>
-                </div>
-
-                <div class="to-do-list-item">
-                    <h5 class="mb-0 font-weight-normal">Quarto 125</h5>
-                    <p class="mb-0 tx-12 text-muted">R$ 185,00</p>
-                </div>
-
-                <div class="to-do-list-item">
-                      <h5 class="mb-0 font-weight-normal">Conta Mesa 12</h5>
-                      <p class="mb-0 tx-12 text-muted">R$ 84,30</p>
-                  </div>
-
-                <div class="to-do-list-item">
-                    <h5 class="mb-0 font-weight-normal">Silvana Morais</h5>
-                    <p class="mb-0 tx-12 text-muted">R$ 25,12</p>
                 </div>
 
               </div>

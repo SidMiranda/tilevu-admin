@@ -2,7 +2,8 @@
     <div class="d-flex justify-content-between flex-row  align-items-center pdv-bottom-totais">
         <div class="pdv-items-count"></div>
         <div class="pdv-items-discount"></div>
-        <div class="pdv-items-account" style="color:blue; font-weight: bold;">Conta: Carlos Silva</div>
+        <input type="text" id="account-id" value="Caixa Livre" hidden />
+        <div class="pdv-items-account" style="color:blue; font-weight: bold;">Conta: Caixa Livre</div>
         <div class="pdv-total-price" id="total-pay"></div>
     </div>
     <div class="d-flex justify-content-between flex-row align-items-center pdv-bottom-buttons">

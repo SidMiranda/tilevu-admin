@@ -21,22 +21,27 @@
         let qtd = inputQtd.value;
         let sellPrice = productData.sell_price;
         let aleatorydiscount = Math.floor(Math.random() * sellPrice);
-        let items = JSON.parse(localStorage.getItem('items')) || [];
+
+        let accountActiveId = document.getElementById('account-id').value;
+        let accounts = JSON.parse(localStorage.getItem('accounts')) || {};
+        let account = accounts[accountActiveId] || { items: []};
 
         let itemExists = false;
 
-        items.forEach((storedItem, index) => {
+        account.items.forEach((storedItem, index) => {
             if (storedItem.itemId === itemId) {
-                items[index].qtd = parseInt(items[index].qtd) + parseInt(qtd);
+                account.items[index].qtd = parseInt(account.items[index].qtd) + parseInt(qtd);
                 itemExists = true;
             }
         });
 
         if (!itemExists) {
-            items.push({ itemId, itemName, qtd, sellPrice, aleatorydiscount });
+            account.items.push({ itemId, itemName, qtd, sellPrice, aleatorydiscount });
         }
 
-        localStorage.setItem('items', JSON.stringify(items));
+        accounts[accountActiveId] = account;
+        localStorage.setItem('accounts', JSON.stringify(accounts));
+
         searchItem.value = '';
         inputQtd.value = 1;
 
@@ -60,6 +65,7 @@
             searchItem.value = items[selectedItemIndex].innerText;
             autoComplete.style.display = 'none';
             saveItemLocalStorage(items[selectedItemIndex].dataset.value);
+            // saveItemLocalStorageAccount(items[selectedItemIndex].dataset.value);
             searchItem.focus();
 
         }
@@ -173,11 +179,17 @@
     })
 
     pdvTopAccount.addEventListener('click', function () {
-        console.log('click');
         if (changeAccount.style.display === 'block') {
             changeAccount.style.display = 'none';
         }else {
             changeAccount.style.display = 'block';
+            document.getElementById('input-new-account').focus();
+        }
+    })
+
+    document.getElementById('input-new-account').addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+            document.getElementById('btn-new-account').click();
         }
     })
 

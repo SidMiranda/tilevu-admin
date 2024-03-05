@@ -49,9 +49,10 @@
     <!-- End custom js for this page -->
 
   <script src="../assets/js/convert-currency.js"></script>
-  <script src="../assets/pdv/pdv-top.js"></script>
+  {{-- <script src="../assets/pdv/pdv-top.js"></script>
   <script src="../assets/pdv/pdv-items.js"></script>
-  <script src="../assets/pdv/pdv-bottom.js"></script>
+  <script src="../assets/pdv/pdv-bottom.js"></script> --}}
+  <script src="../assets/pdv/pdv.js"></script>
 
   <!-- plugins:js -->
   <script src="../assets/vendors/js/vendor.bundle.base.js"></script>

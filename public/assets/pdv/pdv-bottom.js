@@ -25,39 +25,77 @@
     })
   })(jQuery);
 
+var accountActiveId = document.getElementById('account-id').value;
+
 function updateTotal(){
     updateItemsCount();
     updateDiscount();
     upadateTotalPrice();
+
+    updateAccountList();
+
+}
+
+function addItem(itemId){
+    let accounts = JSON.parse(localStorage.getItem('accounts')) || {};
+    let accountActiveId = document.getElementById('account-id').value;
+    let account = accounts[accountActiveId] || { items: []};
+
+    if(accounts.hasOwnProperty(accountActiveId)){
+        let accountItems = accounts[accountActiveId].items;
+        accountItems.forEach((storedItem, index) => {
+            if (storedItem.itemId == itemId) {
+                accountItems[index].qtd = parseInt(accountItems[index].qtd) + 1;
+            }
+        });
+        accounts[accountActiveId] = account;
+        localStorage.setItem('accounts', JSON.stringify(accounts));
+        updateTable();
+    }
 }
 
 function updateItemsCount(){
-    let items = JSON.parse(localStorage.getItem('items')) || [];
-    let count = 0;
-    items.forEach(item => {
-        count += parseInt(item.qtd);
-    });
-    document.querySelector('.pdv-items-count').innerHTML = count + " Itens";
+    let accounts = JSON.parse(localStorage.getItem('accounts')) || {};
+    let accountActiveId = document.getElementById('account-id').value;
+
+    if(accounts.hasOwnProperty(accountActiveId)){
+        let accountItems = accounts[accountActiveId].items;
+        let itemsCount = 0;
+        accountItems.forEach((storedItem, index) => {
+            itemsCount += parseInt(storedItem.qtd);
+        });
+        document.querySelector('.pdv-items-count').innerHTML = "Itens " + itemsCount;
+    }
+
 }
 
 function updateDiscount(){
-    let items = JSON.parse(localStorage.getItem('items')) || [];
-    let discount = 0;
-    items.forEach(item => {
-        discount += item.aleatorydiscount;
-    });
-    document.querySelector('.pdv-items-discount').innerHTML = "Descontos " + convertToBRL(discount);
+    let accounts = JSON.parse(localStorage.getItem('accounts')) || {};
+    let accountActiveId = document.getElementById('account-id').value;
+
+    if(accounts.hasOwnProperty(accountActiveId)){
+        let accountItems = accounts[accountActiveId].items;
+        let discount = 0;
+        accountItems.forEach((storedItem, index) => {
+            discount += storedItem.aleatorydiscount;
+        });
+        document.querySelector('.pdv-items-discount').innerHTML = "Desconto " + convertToBRL(discount);
+    }
 }
 
 function upadateTotalPrice(){
-    let items = JSON.parse(localStorage.getItem('items')) || [];
+    let accounts = JSON.parse(localStorage.getItem('accounts')) || {};
+    let accountActiveId = document.getElementById('account-id').value;
     let totalPrice = 0;
     let discount = 0;
-    items.forEach(item => {
-        discount += item.aleatorydiscount;
-        totalPrice += item.qtd * item.sellPrice - item.aleatorydiscount;
-    });
-    document.querySelector('.pdv-total-price').innerHTML = "Total " + convertToBRL(totalPrice);
+    if(accounts.hasOwnProperty(accountActiveId)){
+        let accountItems = accounts[accountActiveId].items;
+        accountItems.forEach(item => {
+            discount += item.aleatorydiscount;
+            totalPrice += item.qtd * item.sellPrice - item.aleatorydiscount;
+        });
+        document.querySelector('.pdv-total-price').innerHTML = "Total " + convertToBRL(totalPrice);
+    }
 }
 
 function cancelOrder(){
@@ -78,6 +116,58 @@ document.addEventListener('keydown', (e) => {
         cancelOrder();
     }
 });
+
+function totalSumAccount(accountName){
+    let accounts = JSON.parse(localStorage.getItem('accounts')) || {};
+    let account = accounts[accountName] || { items: []};
+    let totalPrice = 0;
+    let discount = 0;
+    account.items.forEach(item => {
+        discount += item.aleatorydiscount;
+        totalPrice += item.qtd * item.sellPrice - item.aleatorydiscount;
+    });
+    return convertToBRL(totalPrice);
+}
+
+function updateAccountList(){
+
+    table = document.querySelector('#change-account-list');
+
+    let accounts = JSON.parse(localStorage.getItem('accounts')) || {};
+    let accountNames = Object.keys(accounts);
+
+    table.innerHTML = '';
+    accountNames.forEach(accountName => {
+        let tr = document.createElement('div');
+        tr.innerHTML = `
+            <div class="to-do-list-item">
+                <h5 class="mb-0 font-weight-normal">${accountName}</h5>
+                <p class="mb-0 tx-12 text-muted">${totalSumAccount(accountName)}</p>
+            </div>
+        `;
+        table.appendChild(tr);
+    });
+}
+
+function addAccountLocalStorage(newAccount){
+    let accounts = JSON.parse(localStorage.getItem('accounts')) || {};
+    let account = accounts[newAccount] || { items: []};
+    accounts[newAccount] = account;
+    localStorage.setItem('accounts', JSON.stringify(accounts));
+}
+
+document.getElementById('btn-new-account').addEventListener('click', function() {
+    let inputNewAccount = document.getElementById('input-new-account');
+    document.getElementById('account-id').value = inputNewAccount.value;
+    inputNewAccount.value = '';
+    document.querySelector('.pdv-items-account').innerText = 'Conta ' + document.getElementById('account-id').value;
+    document.getElementById('change-account').style.display = 'none';
+    addAccountLocalStorage(document.getElementById('account-id').value);
+    updateTable();
+    updateAccountList();
+});
+
+
 
 
 
