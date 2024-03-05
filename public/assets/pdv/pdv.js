@@ -1,7 +1,14 @@
+function log(data){
+    let debug = true;
+    if(debug){
+        console.log(data);
+    }
+}
 
-document.getElementById('search-item').focus();
-let  searchItem = document.getElementById('search-item');
-let  autoComplete = document.getElementById('auto-complete');
+window.apiUrl = 'http://localhost:8000/api';
+document.getElementById('input-search-item').focus();
+let  inputSearchItem = document.getElementById('input-search-item');
+let  autoCompleteBox = document.getElementById('auto-complete-box');
 let  autoCompleteList = document.getElementById('auto-complete-list');
 let  items = document.querySelectorAll('#auto-complete-list li');
 let  btnAdd = document.getElementById('btn-add');
@@ -13,87 +20,165 @@ let  changeAccount = document.getElementById('change-account');
 let  inputNewAccount = document.getElementById('input-new-account');
 let  btnNewAccount = document.getElementById('btn-new-account');
 
-// criar padrões de classes comuns em css
-
-// alterar nome das variaveis e ids/class das tags
-// btn
-// input
-// box
-// lbl
-
-// function createAccount(accountName)
-// function removeAccount(accountName)
-// function updateAccount()
-// function updateAccountList()
-// function totalSumAccount(accountName)
-// function addAccountItem(accountName, item[])
-// function getAccountItems(accountName)
-// function getAccountsList()
-
-// renomear funções
-// criar testes
-
 let selectedItemIndex = -1;
 
-function saveItemLocalStorage(item) {
-    let productData = JSON.parse(item);
-    let itemId = productData.id;
-    let itemName = productData.name;
-    let qtd = inputQtd.value;
-    let sellPrice = productData.sell_price;
-    let aleatorydiscount = Math.floor(Math.random() * sellPrice);
-
-    let accountActiveId = document.getElementById('account-id').value;
+/** MANIPULATING LOCAL STORAGE **/
+function createAccount(accountName){
     let accounts = JSON.parse(localStorage.getItem('accounts')) || {};
-    let account = accounts[accountActiveId] || { items: []};
+    let account = accounts[accountName] || { items: []};
+    accounts[accountName] = account;
+    localStorage.setItem('accounts', JSON.stringify(accounts));
+}
+createAccount('Caixa Livre');
+function removeAccount(accountName){
+    let accounts = JSON.parse(localStorage.getItem('accounts')) || {};
+    delete accounts[accountName];
+    localStorage.setItem('accounts', JSON.stringify(accounts));
+}
+function getAccountList(){
+    let accounts = JSON.parse(localStorage.getItem('accounts')) || {};
+    return Object.keys(accounts);
+}
+function getTotalPrice(accountName){
+    let accounts = JSON.parse(localStorage.getItem('accounts')) || {};
+    let account = accounts[accountName] || { items: []};
+    let totalPrice = 0;
+    let discount = 0;
+    account.items.forEach(item => {
+        discount += item.aleatorydiscount;
+        totalPrice += item.qtd * item.sellPrice - item.aleatorydiscount;
+    });
+    return convertToBRL(totalPrice);
+}
+function getItemsCount(accountName){
+    let accounts = JSON.parse(localStorage.getItem('accounts')) || {};
+    let account = accounts[accountName] || { items: []};
+    let itemsCount = 0;
+    account.items.forEach((storedItem, index) => {
+        itemsCount += parseInt(storedItem.qtd);
+    });
+    return itemsCount;
+}
+function getItemsDiscount(accountName){
+    let accounts = JSON.parse(localStorage.getItem('accounts')) || {};
+    let account = accounts[accountName] || { items: []};
+    let discount = 0;
+    account.items.forEach((storedItem, index) => {
+        discount += storedItem.aleatorydiscount;
+    });
+    return convertToBRL(discount);
+}
+function getAccountItems(accountName){
+    let accounts = JSON.parse(localStorage.getItem('accounts')) || {};
+    let account = accounts[accountName] || { items: []};
+    return account.items;
+}
+function getActiveAccount(){
+    return document.getElementById('account-id').value;
+}
+function setActiveAccount(accountName){
+    document.getElementById('account-id').value = accountName;
+    document.querySelector('.pdv-items-account').innerText = 'Conta ' + accountName;
+}
+function incrementItem(accountName, itemId){
+    let accounts = JSON.parse(localStorage.getItem('accounts')) || {};
+    let account = accounts[accountName] || { items: []};
+    if(accounts.hasOwnProperty(accountName)){
+        let accountItems = accounts[accountName].items;
+        accountItems.forEach((storedItem, index) => {
+            if (storedItem.itemId == itemId) {
+                accountItems[index].qtd = parseInt(accountItems[index].qtd) + 1;
+            }
+        });
+        accounts[accountName] = account;
+        localStorage.setItem('accounts', JSON.stringify(accounts));
+    }
+}
+function decrementItem(accountName, itemId){
+    let accounts = JSON.parse(localStorage.getItem('accounts')) || {};
+    let account = accounts[accountName] || { items: []};
+    if(accounts.hasOwnProperty(accountName)){
+        let accountItems = accounts[accountName].items;
+        accountItems.forEach((storedItem, index) => {
+            if (storedItem.itemId == itemId) {
+                accountItems[index].qtd = parseInt(accountItems[index].qtd) - 1;
+                if(accountItems[index].qtd <= 0){
+                    accountItems.splice(index, 1);
+                }
+            }
+        });
+        accounts[accountName] = account;
+        localStorage.setItem('accounts', JSON.stringify(accounts));
+    }
+}
 
+function addItemToAccount(accountName, item){
+    let accounts = JSON.parse(localStorage.getItem('accounts')) || {};
+    let account = accounts[accountName] || { items: []};
+    item = JSON.parse(item);
+    let itemId = item.id;
+    let itemName = item.name;
+    let qtd = inputQtd.value;
+    let sellPrice = item.sell_price;
+    let aleatorydiscount = Math.floor(Math.random() * sellPrice);
     let itemExists = false;
-
     account.items.forEach((storedItem, index) => {
         if (storedItem.itemId === itemId) {
             account.items[index].qtd = parseInt(account.items[index].qtd) + parseInt(qtd);
             itemExists = true;
         }
     });
-
     if (!itemExists) {
         account.items.push({ itemId, itemName, qtd, sellPrice, aleatorydiscount });
     }
-
-    accounts[accountActiveId] = account;
+    accounts[accountName] = account;
     localStorage.setItem('accounts', JSON.stringify(accounts));
 
-    searchItem.value = '';
+    inputSearchItem.value = '';
     inputQtd.value = 1;
 
     selectedItemIndex = -1;
     updateTable();
-
 }
-
-function updateSelectedItem() {
-    items.forEach((item, index) => {
-        if (index === selectedItemIndex) {
-            item.classList.add('item-selected');
-        } else {
-            item.classList.remove('item-selected');
-        }
-    });
-}
-
-function handleEnter() {
-    if (items.length > 0) {
-        searchItem.value = items[selectedItemIndex].innerText;
-        autoComplete.style.display = 'none';
-        saveItemLocalStorage(items[selectedItemIndex].dataset.value);
-        // saveItemLocalStorageAccount(items[selectedItemIndex].dataset.value);
-        searchItem.focus();
-
+function deleteItemFromAccount(accountName, itemId){
+    let accounts = JSON.parse(localStorage.getItem('accounts')) || {};
+    let account = accounts[accountName] || { items: []};
+    if(accounts.hasOwnProperty(accountName)){
+        let accountItems = accounts[accountName].items;
+        accountItems.forEach((storedItem, index) => {
+            if (storedItem.itemId == itemId) {
+                accountItems.splice(index, 1);
+            }
+        });
+        accounts[accountName] = account;
+        localStorage.setItem('accounts', JSON.stringify(accounts));
     }
 }
+/****************************************************/
 
+/* ADD ITEM FLOW */
+btnAdd.addEventListener('click', function () {
+    if (inputQtd.value < 999){
+        inputQtd.value = parseInt(inputQtd.value) + 1;
+    }
+})
+btnRemove.addEventListener('click', function () {
+    if (inputQtd.value > 1) {
+        inputQtd.value = parseInt(inputQtd.value) - 1;
+    }
+})
+document.addEventListener('keydown', (e) => {
+    if (e.key === '+') {
+        e.preventDefault();
+        btnAdd.click();
+    }
+    if (e.key === '-') {
+        e.preventDefault();
+        btnRemove.click();
+    }
+});
 function loadProducts() {
-    fetch('http://127.0.0.1:8000/api/product/list')
+    fetch(window.apiUrl+'/product/list')
         .then(response => response.json())
         .then(data => {
             autoCompleteList.innerHTML = '';
@@ -106,55 +191,132 @@ function loadProducts() {
             items = document.querySelectorAll('#auto-complete-list li');
         });
 }
+inputSearchItem.addEventListener('input', event => {
+    if (event.target.value.length > 3) {
+        loadProducts();
+        autoCompleteBox.style.display = 'block';
+    } else {
+        autoCompleteBox.style.display = 'none';
+    }
 
-function removeItem(itemId){
-    let accounts = JSON.parse(localStorage.getItem('accounts')) || {};
-    let accountActiveId = document.getElementById('account-id').value;
-    let account = accounts[accountActiveId] || { items: []};
+})
+inputSearchItem.addEventListener('focusout', event => {
+    setTimeout(() => {
+        autoCompleteBox.style.display = 'none';
+    }, 200);
+})
+inputSearchItem.addEventListener('focusin', event => {
+    if (inputSearchItem.value.length > 3) {
+        autoCompleteBox.style.display = 'block';
+    }
+})
+function updateSelectedItem() {
+    items.forEach((item, index) => {
+        if (index === selectedItemIndex) {
+            item.classList.add('item-selected');
+        } else {
+            item.classList.remove('item-selected');
+        }
+    });
+}
+function handleEnter() {
+    if (items.length > 0) {
+        inputSearchItem.value = items[selectedItemIndex].innerText;
+        autoCompleteBox.style.display = 'none';
+        addItemToAccount(getActiveAccount(), items[selectedItemIndex].dataset.value);
+        inputSearchItem.focus();
 
-    if(accounts.hasOwnProperty(accountActiveId)){
-        let accountItems = accounts[accountActiveId].items;
-        accountItems.forEach((storedItem, index) => {
-            if (storedItem.itemId == itemId) {
-                accountItems[index].qtd = parseInt(accountItems[index].qtd) - 1;
-                if(accountItems[index].qtd <= 0){
-                    accountItems.splice(index, 1);
+    }
+}
+inputSearchItem.addEventListener('keydown', function (e) {
+    if (autoCompleteBox.style.display === 'block') {
+        if (e.key === 'ArrowDown') {
+            var itemsCount = autoCompleteList.children.length;
+            if (selectedItemIndex < itemsCount - 1) {
+                selectedItemIndex++;
+
+                if (items[selectedItemIndex].offsetTop + items[selectedItemIndex].offsetHeight > autoCompleteList.scrollTop + autoCompleteList.offsetHeight) {
+                    autoCompleteList.scrollTop = items[selectedItemIndex].offsetTop + items[selectedItemIndex].offsetHeight - autoCompleteList.offsetHeight;
                 }
             }
-        });
-        accounts[accountActiveId] = account;
-        localStorage.setItem('accounts', JSON.stringify(accounts));
-        updateTable();
-    }
-}
+        }else if (e.key === 'ArrowUp') {
+            if (selectedItemIndex > 0) {
+                selectedItemIndex--;
 
-function deleteItem(itemId){
-    let accounts = JSON.parse(localStorage.getItem('accounts')) || {};
-    let accountActiveId = document.getElementById('account-id').value;
-    let account = accounts[accountActiveId] || { items: []};
-
-    if(accounts.hasOwnProperty(accountActiveId)){
-        let accountItems = accounts[accountActiveId].items;
-        accountItems.forEach((storedItem, index) => {
-            if (storedItem.itemId == itemId) {
-                accountItems.splice(index, 1);
+                if (items[selectedItemIndex].offsetTop < autoCompleteList.scrollTop) {
+                    autoCompleteList.scrollTop = items[selectedItemIndex].offsetTop;
+                }
             }
-        });
-        accounts[accountActiveId] = account;
-        localStorage.setItem('accounts', JSON.stringify(accounts));
-        updateTable();
+        }else if (e.key === 'Enter') {
+            handleEnter();
+        }
+    }else if (e.key === 'Enter') {
+        if (inputSearchItem.value > 1 && inputSearchItem.value < 1000) {
+            inputQtd.value = inputSearchItem.value;
+            inputSearchItem.value = '';
+        }else{
+            addItemToAccount(getActiveAccount(), items[selectedItemIndex].dataset.value);
+        }
+        autoCompleteBox.style.display = 'none';
     }
+
+    updateSelectedItem();
+})
+autoCompleteBox.addEventListener('click', function (e) {
+    items.forEach((item, index) => {
+        if (item === e.target) {
+            selectedItemIndex = index;
+        }
+    });
+    inputSearchItem.value = e.target.innerText;
+    autoCompleteBox.style.display = 'none';
+    inputSearchItem.focus();
+})
+btnAddItem.addEventListener('click', function () {
+if(items[selectedItemIndex].dataset.value !== undefined){
+        addItemToAccount(getActiveAccount(), items[selectedItemIndex].dataset.value);
+    }
+})
+/***************************************************** */
+
+/* TABLE FLOW */
+function removeItem(itemId){
+    decrementItem(getActiveAccount(), itemId)
+    log('removing ' + itemId + ' from ' + getActiveAccount())
+    updateTable()
+
 }
+function addItem(item){
+    incrementItem(getActiveAccount(), item)
+    log('adding ' + item + ' to ' + getActiveAccount())
+    updateTable()
+}
+function deleteItem(itemId){
+    deleteItemFromAccount(getActiveAccount(), itemId);
+    log('deleting ' + itemId + ' from ' + getActiveAccount())
+    updateTable();
+}
+function updateTotal(){
+    document.querySelector('.pdv-items-count').innerHTML = "Itens " +
+    getItemsCount(getActiveAccount());
 
+    document.querySelector('.pdv-items-discount').innerHTML = "Desconto " +
+    getItemsDiscount(getActiveAccount());
+
+    document.querySelector('.pdv-total-price').innerHTML = "Total " +
+    getTotalPrice(getActiveAccount());
+
+    updateAccountList();
+}
 function updateTable(){
-
+    log('updateTable');
     table = document.querySelector('.table-custom tbody');
     let accounts = JSON.parse(localStorage.getItem('accounts')) || {};
-    let accountActiveId = document.getElementById('account-id').value;
-
+    let accountActiveId = getActiveAccount();
+    log(accountActiveId);
     if(accounts.hasOwnProperty(accountActiveId)){
         let accountItems = accounts[accountActiveId].items;
-
+        log(accountItems);
         table.innerHTML = '';
         accountItems.forEach(item => {
             let tr = document.createElement('tr');
@@ -179,6 +341,27 @@ function updateTable(){
         });
     }
     updateTotal();
+}
+function updateAccountList(){
+
+    table = document.querySelector('#change-account-list');
+
+    let accounts = JSON.parse(localStorage.getItem('accounts')) || {};
+    let accountNames = Object.keys(accounts);
+
+    table.innerHTML = '';
+    accountNames.forEach(accountName => {
+        let tr = document.createElement('div');
+        tr.innerHTML = `
+            <div class="to-do-list-item">
+                <a href="#" onclick="changeActiveAccount('${accountName}')" style="text-decoration: none;">
+                    <h5 class="mb-0 font-weight-normal">${accountName}</h5>
+                    <p class="mb-0 tx-12 text-muted">${getTotalPrice(accountName)}</p>
+                </a>
+            </div>
+        `;
+        table.appendChild(tr);
+    });
 }
 
 (function($) {
@@ -208,116 +391,12 @@ function updateTable(){
     })
   })(jQuery);
 
-function updateTotal(){
-    updateItemsCount();
-    updateDiscount();
-    upadateTotalPrice();
-
-    updateAccountList();
-
-}
-
-function addItem(itemId){
-    let accounts = JSON.parse(localStorage.getItem('accounts')) || {};
-    let accountActiveId = document.getElementById('account-id').value;
-    let account = accounts[accountActiveId] || { items: []};
-
-    if(accounts.hasOwnProperty(accountActiveId)){
-        let accountItems = accounts[accountActiveId].items;
-        accountItems.forEach((storedItem, index) => {
-            if (storedItem.itemId == itemId) {
-                accountItems[index].qtd = parseInt(accountItems[index].qtd) + 1;
-            }
-        });
-        accounts[accountActiveId] = account;
-        localStorage.setItem('accounts', JSON.stringify(accounts));
-        updateTable();
-    }
-}
-
-function updateItemsCount(){
-    let accounts = JSON.parse(localStorage.getItem('accounts')) || {};
-    let accountActiveId = document.getElementById('account-id').value;
-
-    if(accounts.hasOwnProperty(accountActiveId)){
-        let accountItems = accounts[accountActiveId].items;
-        let itemsCount = 0;
-        accountItems.forEach((storedItem, index) => {
-            itemsCount += parseInt(storedItem.qtd);
-        });
-        document.querySelector('.pdv-items-count').innerHTML = "Itens " + itemsCount;
-    }
-
-}
-
-function updateDiscount(){
-    let accounts = JSON.parse(localStorage.getItem('accounts')) || {};
-    let accountActiveId = document.getElementById('account-id').value;
-
-    if(accounts.hasOwnProperty(accountActiveId)){
-        let accountItems = accounts[accountActiveId].items;
-        let discount = 0;
-        accountItems.forEach((storedItem, index) => {
-            discount += storedItem.aleatorydiscount;
-        });
-        document.querySelector('.pdv-items-discount').innerHTML = "Desconto " + convertToBRL(discount);
-    }
-}
-
-function upadateTotalPrice(){
-    let accounts = JSON.parse(localStorage.getItem('accounts')) || {};
-    let accountActiveId = document.getElementById('account-id').value;
-    let totalPrice = 0;
-    let discount = 0;
-    if(accounts.hasOwnProperty(accountActiveId)){
-        let accountItems = accounts[accountActiveId].items;
-        accountItems.forEach(item => {
-            discount += item.aleatorydiscount;
-            totalPrice += item.qtd * item.sellPrice - item.aleatorydiscount;
-        });
-        document.querySelector('.pdv-total-price').innerHTML = "Total " + convertToBRL(totalPrice);
-    }
-}
-
 function cancelOrder(){
     if(confirm('Deseja cancelar o pedido?')){
-        localStorage.removeItem('items');
+        removeAccount(getActiveAccount());
+        setActiveAccount('Caixa Livre');
         updateTable();
     }
-}
-
-function totalSumAccount(accountName){
-    let accounts = JSON.parse(localStorage.getItem('accounts')) || {};
-    let account = accounts[accountName] || { items: []};
-    let totalPrice = 0;
-    let discount = 0;
-    account.items.forEach(item => {
-        discount += item.aleatorydiscount;
-        totalPrice += item.qtd * item.sellPrice - item.aleatorydiscount;
-    });
-    return convertToBRL(totalPrice);
-}
-
-function updateAccountList(){
-
-    table = document.querySelector('#change-account-list');
-
-    let accounts = JSON.parse(localStorage.getItem('accounts')) || {};
-    let accountNames = Object.keys(accounts);
-
-    table.innerHTML = '';
-    accountNames.forEach(accountName => {
-        let tr = document.createElement('div');
-        tr.innerHTML = `
-            <div class="to-do-list-item">
-                <a href="#" onclick="changeActiveAccount('${accountName}')" style="text-decoration: none;">
-                    <h5 class="mb-0 font-weight-normal">${accountName}</h5>
-                    <p class="mb-0 tx-12 text-muted">${totalSumAccount(accountName)}</p>
-                </a>
-            </div>
-        `;
-        table.appendChild(tr);
-    });
 }
 
 function addAccountLocalStorage(newAccount){
@@ -333,99 +412,6 @@ function changeActiveAccount(accountName){
     document.getElementById('change-account').style.display = 'none';
     updateTable();
 }
-
-
-searchItem.addEventListener('keydown', function (e) {
-    if (autoComplete.style.display === 'block') {
-        if (e.key === 'ArrowDown') {
-            var itemsCount = autoCompleteList.children.length;
-            if (selectedItemIndex < itemsCount - 1) {
-                selectedItemIndex++;
-
-                if (items[selectedItemIndex].offsetTop + items[selectedItemIndex].offsetHeight > autoCompleteList.scrollTop + autoCompleteList.offsetHeight) {
-                    autoCompleteList.scrollTop = items[selectedItemIndex].offsetTop + items[selectedItemIndex].offsetHeight - autoCompleteList.offsetHeight;
-                }
-            }
-        }else if (e.key === 'ArrowUp') {
-            if (selectedItemIndex > 0) {
-                selectedItemIndex--;
-
-                if (items[selectedItemIndex].offsetTop < autoCompleteList.scrollTop) {
-                    autoCompleteList.scrollTop = items[selectedItemIndex].offsetTop;
-                }
-            }
-        }else if (e.key === 'Enter') {
-            handleEnter();
-        }
-    }else if (e.key === 'Enter') {
-        if (searchItem.value > 1 && searchItem.value < 1000) {
-            inputQtd.value = searchItem.value;
-            searchItem.value = '';
-        }else{
-            saveItemLocalStorage(items[selectedItemIndex].dataset.value);
-        }
-        autoComplete.style.display = 'none';
-    }else if (e.key === '+') {
-        e.preventDefault();
-        btnAdd.click();
-    }else if (e.key === '-') {
-        e.preventDefault();
-        btnRemove.click();
-    }
-
-    updateSelectedItem();
-})
-
-searchItem.addEventListener('input', event => {
-    if (event.target.value.length > 3) {
-        loadProducts();
-        autoComplete.style.display = 'block';
-    } else {
-        autoComplete.style.display = 'none';
-    }
-
-})
-
-searchItem.addEventListener('focusout', event => {
-    setTimeout(() => {
-        autoComplete.style.display = 'none';
-    }, 200);
-})
-
-searchItem.addEventListener('focusin', event => {
-    if (searchItem.value.length > 3) {
-        autoComplete.style.display = 'block';
-    }
-})
-
-autoComplete.addEventListener('click', function (e) {
-    items.forEach((item, index) => {
-        if (item === e.target) {
-            selectedItemIndex = index;
-        }
-    });
-    searchItem.value = e.target.innerText;
-    autoComplete.style.display = 'none';
-    searchItem.focus();
-})
-
-btnAdd.addEventListener('click', function () {
-    if (inputQtd.value < 999){
-        inputQtd.value = parseInt(inputQtd.value) + 1;
-    }
-})
-
-btnRemove.addEventListener('click', function () {
-    if (inputQtd.value > 1) {
-        inputQtd.value = parseInt(inputQtd.value) - 1;
-    }
-})
-
-btnAddItem.addEventListener('click', function () {
-if(items[selectedItemIndex].dataset.value !== undefined){
-        saveItemLocalStorage(items[selectedItemIndex].dataset.value);
-    }
-})
 
 btnTopAccount.addEventListener('click', function () {
     if (changeAccount.style.display === 'block') {

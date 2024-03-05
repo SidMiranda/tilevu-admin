@@ -1,7 +1,18 @@
+body{
+    user-select: none!important;
+}
+.bg-white {background-color: white;}
+.color-white {color: white;}
+.list-style-none {list-style-type: none;}
+.font-1-rem {font-size: 1rem;}
+.font-1-2rem {font-size: 1.2rem;}
+.font-1-5rem {font-size: 1.5rem;}
+.font-2rem {font-size: 2rem;}
+.cursor-pointer {cursor: pointer;}
+.border-none {border: none;}
+
 .pdv-adjust {
     height: 95vh;
-    background-color: white;
-    user-select: none;
 }
 /****************************************************/
 .pdv-top {
@@ -10,17 +21,10 @@
 }
 .pdv-top-qtd {
     background-color: #7096A1;
-    height: 100%;
     font-size: 0.8rem;
     width: 150px;
-    color:white;
 }
-.pdv-top-qtd-control{
-    margin:5px;
-}
-.pdv-top-qtd-control span {
-    padding:2px;
-}
+
 .pdv-top-qtd button, input {
     background-color: #7096A1;
     color: white;
@@ -34,10 +38,10 @@
 }
 .pdv-top-qtd input {
     width: 37px;
-    text-align: center;
 }
 
-#auto-complete{
+/*********************************************/
+#auto-complete-box{
     display: none;
     background-color:white;
     position: absolute;
@@ -46,8 +50,7 @@
     margin-top:30px;
     border: solid 1px #ccc;
 }
-
-#auto-complete ul{
+#auto-complete-box ul{
     list-style-type: none;
     padding:0;
     overflow-y: scroll;
@@ -55,15 +58,14 @@
     padding-left:5px;
     margin:0;
 }
-
-#auto-complete ul li{
+#auto-complete-box ul li{
     padding:5px;
     cursor:pointer;
 }
-
-#auto-complete ul li:hover{
+#auto-complete-box ul li:hover{
     background-color:#ccc;
 }
+/*********************************************/
 
 .item-selected{
     background-color:#ccc;
@@ -101,29 +103,12 @@
     box-shadow: 0 0 5px black;
 }
 
-.pdv-top-icon{
-    font-size: 2rem;
-    color: white;
-}
-
-.pdv-top-account{
-    font-size: 2rem;
-    color:white;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-}
-
 #input-new-account{
-    background-color: white;
     color:black;
     border: solid 1px #ccc;
-    margin:5px;
-    width:97%;
-    text-align: center;
-    font-size: 1rem;
+    width:99%;
 }
-
+/*********************************************/
 #btn-accounts{
     height: 100%;
     background-color: blue;
@@ -133,7 +118,6 @@
 #btn-accounts:hover{
     box-shadow: 0 0 5px black;
 }
-
 #change-account{
     display:none;
     position: absolute;
@@ -146,38 +130,22 @@
     max-height: 450px;
     overflow-y: scroll;
 }
-
 #change-account-list{
     list-style-type: none;
     padding:0;
     margin:0;
     text-align: center;
 }
-
 .to-do-list-item{
     padding:15px;
     border-bottom: solid 1px #ccc;
 }
-
 .to-do-list-item:hover{
     background-color: #ccc;
     cursor: pointer;
 }
+/**********************************************/
 
-/**********************************************/
-.mw-50 {
-    max-width: 50px!important;
-}
-.mw-100 {
-    max-width: 100px;
-}
-.mw-150 {
-    max-width: 150px;
-}
-/**********************************************/
-.table-custom{
-    user-select: none;
-}
 .pdv-table-qtd{
     padding:0;
     display:flex;
